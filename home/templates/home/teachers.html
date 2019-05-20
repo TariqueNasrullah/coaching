@@ -1,0 +1,38 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+<section class="probootstrap-section">
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-6 col-md-offset-3 text-center section-heading probootstrap-animate">
+	      <h2>Meet Our Qualified Teachers</h2>
+	    </div>
+	  </div>
+	  <!-- END row -->
+
+	  <div class="row">
+	    {% for teacher in teacher_list %}
+	    	<div class="col-md-3 col-sm-6">
+		      <div class="probootstrap-teacher text-center probootstrap-animate">
+		        <figure class="media">
+		          <img style="height: 90px;" src="{% static '' %}{{ teacher.photo }}" alt="Free Bootstrap Template by uicookies.com" class="img-responsive">
+		        </figure>
+		        <div class="text">
+		          <h3 style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis;" > {{teacher.name}} </h3>
+		          <p>{{ teacher.subject }}</p>
+		          <ul class="probootstrap-footer-social">
+		            <li class="twitter"><a target="_blank" href="{{teacher.twitter}}"><i class="icon-twitter"></i></a></li>
+		            <li class="facebook"><a href="{{teacher.facebook}}"><i class="icon-facebook2"></i></a></li>
+		            <li class="instagram"><a href="{{teacher.instagram}}"><i class="icon-instagram2"></i></a></li>
+		            <li class="google-plus"><a href="{{teacher.googleplus}}"><i class="icon-google-plus"></i></a></li>
+		          </ul>
+		        </div>
+		      </div>
+		    </div>
+	    {% endfor %}
+	  </div>
+
+	</div>
+</section>
+{% endblock %}
