@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -31,6 +30,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'photologue',
+    'sortedm2m',
     'eventManager',
     'home',
     'teachers',
@@ -40,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 ]
-
+SITE_ID = 1
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,10 +56,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'src.urls'
 
+from photologue import PHOTOLOGUE_APP_DIR
+TEMPLATE_DIRS = (
+    PHOTOLOGUE_APP_DIR,
+)
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/photologue'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,3 +135,5 @@ MEDIA_URL = '/media/'
 STATICFILES_DIRS = [
     BASE_DIR,
 ]
+
+PHOTOLOGUE_GALLERY_SAMPLE_SIZE = 4
