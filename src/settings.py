@@ -33,8 +33,10 @@ INSTALLED_APPS = [
     'photologue',
     'sortedm2m',
     'eventManager',
+    'noticeboard',
     'home',
     'teachers',
+    'study_materials',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'tinymce',
 ]
 SITE_ID = 1
 MIDDLEWARE = [
@@ -137,3 +140,31 @@ STATICFILES_DIRS = [
 ]
 
 PHOTOLOGUE_GALLERY_SAMPLE_SIZE = 4
+
+#'plugins': "table,spellchecker,paste,searchreplace",
+
+# TinyMCE settings
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'skin': "o2k7",
+    'skin_variant': "silver",
+    'relative_urls': False,
+    'width': "900",
+    'height': "500",
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_toolbar_align': "left",
+    'theme_advanced_statusbar_location': "bottom",
+    'theme_advanced_resizing': True,
+    'element_format': "html",
+    'plugins' : "contextmenu,directionality,fullscreen,paste,preview,searchreplace,spellchecker,visualchars,wordcount,table",
+    'theme_advanced_buttons3_add' : "tablecontrols",
+    'table_styles' : "Header 1=header1;Header 2=header2;Header 3=header3",
+    'table_cell_styles' : "Header 1=header1;Header 2=header2;Header 3=header3;Table Cell=tableCel1",
+    'table_row_styles' : "Header 1=header1;Header 2=header2;Header 3=header3;Table Row=tableRow1",
+    'table_cell_limit' : 100,
+    'table_row_limit' : 5,
+    'table_col_limit' : 5,
+    'table_inline_editing': True,
+}
+
+# TinyMCE settings end

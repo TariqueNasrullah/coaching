@@ -10,5 +10,7 @@ urlpatterns = [
 	url(r'^events/(?P<pk>\d+)/$', views.events_param, name='events_param'),
 	url(r'^teachers$', views.teachers, name='teachers'),
 	url(r'^contact$', views.contact, name='contact'),
-	url(r'^test/(?P<pk>\d+)/$', views.test, name='test'),
+	url(r'^notice$', views.noticeView, name='notice'),
+	url(r'^blog$', views.blogList, name='bloglist'),
+	url(r'^blog/(?P<pk>\d+)$', views.blogView, name='blogview'),
 ]

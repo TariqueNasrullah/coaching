@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^', include('home.urls')),
     url(r'^photologue/', include('photologue.urls', namespace='photologue')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

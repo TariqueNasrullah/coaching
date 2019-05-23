@@ -1,6 +1,12 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, get_object_or_404
 from eventManager.models import event as event_model
 from teachers.models import teacher
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from noticeboard.models import notice
+from .models import blog
+from study_materials.models import free_materials
+from django.db.models import Q
+
 def home(request):
 	p = event_model.objects.filter()[:3]
 	selected_event = []
@@ -20,13 +26,46 @@ def home(request):
 
 
 def course_view_science(request):
-	return render(request, 'home/courses_science.html')
+	p = free_materials.objects.filter(Q(belongs_to='Science') | Q(belongs_to='All Subject'))
+	page = request.GET.get('page', 1)
+	paginator = Paginator(p, 8)
+
+	try:
+		selected_materials = paginator.page(page)
+	except PageNotAnInteger:
+		selected_materials = paginator.page(1)
+	except EmptyPage:
+		selected_materials = paginator.page(paginator.num_pages)
+
+	return render(request, 'home/courses_science.html', { 'selected_materials' : selected_materials})
 
 def course_view_commerce(request):
-	return render(request, 'home/courses_commerce.html')
+	p = free_materials.objects.filter(Q(belongs_to='Commerce') | Q(belongs_to='All Subject'))
+	page = request.GET.get('page', 1)
+	paginator = Paginator(p, 8)
+
+	try:
+		selected_materials = paginator.page(page)
+	except PageNotAnInteger:
+		selected_materials = paginator.page(1)
+	except EmptyPage:
+		selected_materials = paginator.page(paginator.num_pages)
+
+	return render(request, 'home/courses_commerce.html', { 'selected_materials': selected_materials})
 
 def course_view_arts(request):
-	return render(request, 'home/courses_arts.html')
+	p = free_materials.objects.filter(Q(belongs_to='Arts') | Q(belongs_to='All Subject'))
+	page = request.GET.get('page', 1)
+	paginator = Paginator(p, 8)
+
+	try:
+		selected_materials = paginator.page(page)
+	except PageNotAnInteger:
+		selected_materials = paginator.page(1)
+	except EmptyPage:
+		selected_materials = paginator.page(paginator.num_pages)
+
+	return render(request, 'home/courses_arts.html', {'selected_materials' : selected_materials})
 
 def events(request):
 	p = event_model.objects.filter()[0]
@@ -118,3 +157,38 @@ def contact(request):
 
 def test(request, pk=None):
 	return render(request, 'home/events.html')
+
+def noticeView(request):
+	notice_list = notice.objects.all()
+	page = request.GET.get('page', 1)
+
+	paginator = Paginator(notice_list, 8)
+
+	try:
+		selected_notice = paginator.page(page)
+	except PageNotAnInteger:
+		selected_notice = paginator.page(1)
+	except EmptyPage:
+		selected_notice = paginator.page(paginator.num_pages)
+
+	return render(request, 'home/notice.html', {'selected_notice': selected_notice} )
+
+def blogList(request):
+	bolg_list = blog.objects.all().order_by('date')
+	page = request.GET.get('page', 1)
+
+	paginator = Paginator(bolg_list, 8)
+
+	try:
+		selected_blog = paginator.page(page)
+	except PageNotAnInteger:
+		selected_blog = paginator.page(1)
+	except EmptyPage:
+		selected_blog = paginator.page(paginator.num_pages)
+
+	return render(request, 'home/bloglist.html', {'selected_blog' : selected_blog} )
+
+def blogView(request, pk=None):
+	query = get_object_or_404(blog, pk=pk)
+
+	return render(request, 'home/blog_view.html', {'selected_blog' : query })

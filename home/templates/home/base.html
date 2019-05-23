@@ -8,13 +8,13 @@
     <meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
     
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700|Open+Sans" rel="stylesheet">
-      
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
     {% load staticfiles %}
 
     <link rel="stylesheet" href="{% static 'home/css/styles-merged.css' %}">
     <link rel="stylesheet" href="{% static 'home/css/style.min.css' %}">
     <link rel="stylesheet" href="{% static 'home/css/custom.css' %}">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     <!--[if lt IE 9]>
       <script src="js/vendor/html5shiv.min.js"></script>
       <script src="js/vendor/respond.min.js"></script>
@@ -81,7 +81,9 @@
             
               <li><a href="{% url 'teachers' %}">Teachers</a></li>
               <li><a href="{% url 'events' %}">Events</a></li>
+              <li><a href="{% url 'notice' %}">Notice</a></li>
               <li><a href="{% url 'photologue:pl-gallery-archive' %}">Gallery</a></li>
+              <li><a href="{% url 'bloglist' %}">Blog</a></li>
               <li><a href="{% url 'contact' %}">Contact</a></li>
             </ul>
           </div>
@@ -159,6 +161,12 @@
     <script src="{% static 'home/js/scripts.min.js' %}"></script>
     <script src="{% static 'home/js/main.min.js' %}"></script>
     <script src="{% static 'home/js/custom.js' %}"></script>
+
+    {% block style %}
+      <style>
+
+      </style>
+    {% endblock style %}
 
   </body>
 </html>
