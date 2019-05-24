@@ -8,6 +8,7 @@ def fileValidation_extension(value):
 class notice(models.Model):
 	notice_title = models.CharField(max_length=1024, blank=False)
 	notice_pdf_file = models.FileField(upload_to='noticeFiles/', blank=False, validators=[fileValidation_extension])
-
+	date = models.DateTimeField(auto_now_add=True)
+	
 	def __str__(self):
 		return self.notice_title

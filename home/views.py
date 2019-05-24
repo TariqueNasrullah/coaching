@@ -26,7 +26,7 @@ def home(request):
 
 
 def course_view_science(request):
-	p = free_materials.objects.filter(Q(belongs_to='Science') | Q(belongs_to='All Subject'))
+	p = free_materials.objects.filter(Q(belongs_to='Science') | Q(belongs_to='All Subject')).order_by('-date')
 	page = request.GET.get('page', 1)
 	paginator = Paginator(p, 8)
 
@@ -40,7 +40,7 @@ def course_view_science(request):
 	return render(request, 'home/courses_science.html', { 'selected_materials' : selected_materials})
 
 def course_view_commerce(request):
-	p = free_materials.objects.filter(Q(belongs_to='Commerce') | Q(belongs_to='All Subject'))
+	p = free_materials.objects.filter(Q(belongs_to='Commerce') | Q(belongs_to='All Subject')).order_by('-date')
 	page = request.GET.get('page', 1)
 	paginator = Paginator(p, 8)
 
@@ -54,7 +54,7 @@ def course_view_commerce(request):
 	return render(request, 'home/courses_commerce.html', { 'selected_materials': selected_materials})
 
 def course_view_arts(request):
-	p = free_materials.objects.filter(Q(belongs_to='Arts') | Q(belongs_to='All Subject'))
+	p = free_materials.objects.filter(Q(belongs_to='Arts') | Q(belongs_to='All Subject')).order_by('-date')
 	page = request.GET.get('page', 1)
 	paginator = Paginator(p, 8)
 
@@ -159,7 +159,7 @@ def test(request, pk=None):
 	return render(request, 'home/events.html')
 
 def noticeView(request):
-	notice_list = notice.objects.all()
+	notice_list = notice.objects.all().order_by('-date')
 	page = request.GET.get('page', 1)
 
 	paginator = Paginator(notice_list, 8)
@@ -174,7 +174,7 @@ def noticeView(request):
 	return render(request, 'home/notice.html', {'selected_notice': selected_notice} )
 
 def blogList(request):
-	bolg_list = blog.objects.all().order_by('date')
+	bolg_list = blog.objects.all().order_by('-date')
 	page = request.GET.get('page', 1)
 
 	paginator = Paginator(bolg_list, 8)
