@@ -101,7 +101,7 @@
                     {% for event in selected_event %}
                       <div class="item">
                         <a href="{% url 'events_param' pk=event.pk %}" class="probootstrap-featured-news-box">
-                          <figure class="probootstrap-media"><img src="static/{{event.title_image}}" alt="{{event.title}}" class="img-responsive" style="height: 225px; width: 100%"></figure>
+                          <figure class="probootstrap-media"><img src="{{event.title_image}}" alt="{{event.title}}" class="img-responsive" style="height: 225px; width: 100%"></figure>
                           <div class="probootstrap-text">
                             <h3 style="height: 10px; overflow: hidden; padding-bottom: 10rem;">{{event.title}}</h3>
                             <span class="probootstrap-date"><i class="icon-calendar"></i> {{event.date}} </span>

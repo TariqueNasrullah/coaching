@@ -17,7 +17,8 @@ def home(request):
 		temp_dict['title'] = this_event.title
 		temp_dict['date'] = this_event.date
 		temp_dict['location'] = this_event.location
-		temp_dict['title_image'] = str(this_event.title_image)
+		#temp_dict['title_image'] = str(this_event.title_image)
+		temp_dict['title_image'] = this_event.title_image.url
 		selected_event.append(temp_dict)
 		
 	context = {}
