@@ -163,7 +163,7 @@ def noticeView(request):
 	notice_list = notice.objects.all().order_by('-date')
 	page = request.GET.get('page', 1)
 
-	paginator = Paginator(notice_list, 8)
+	paginator = Paginator(notice_list, 5)
 
 	try:
 		selected_notice = paginator.page(page)
