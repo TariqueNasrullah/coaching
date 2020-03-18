@@ -1,6 +1,6 @@
 from django.db import models
 
-SUBJECT_CHOICES = ( ('Science', 'SCINECE'), ('Commerce', 'COMMERCE'), ('Arts', 'ARTS'), ('All Subject', 'ALL SUBJECT'),)
+SUBJECT_CHOICES = ( ('Science', 'SCINECE'),('English', 'ENGLISH'), ('Commerce', 'COMMERCE'), ('Arts', 'ARTS'), ('All Subject', 'ALL SUBJECT'),)
 
 class free_materials(models.Model):
 	title = models.CharField(max_length=1024, blank=False)

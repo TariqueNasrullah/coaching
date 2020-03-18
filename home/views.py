@@ -68,6 +68,20 @@ def course_view_arts(request):
 
 	return render(request, 'home/courses_arts.html', {'selected_materials' : selected_materials})
 
+def course_view_english(request):
+	p = free_materials.objects.filter(Q(belongs_to='English') | Q(belongs_to='All Subject')).order_by('-date')
+	page = request.GET.get('page', 1)
+	paginator = Paginator(p, 8)
+
+	try:
+		selected_materials = paginator.page(page)
+	except PageNotAnInteger:
+		selected_materials = paginator.page(1)
+	except EmptyPage:
+		selected_materials = paginator.page(paginator.num_pages)
+
+	return render(request, 'home/courses_english.html', {'selected_materials' : selected_materials})
+
 def events(request):
 	p = event_model.objects.filter()[0]
 	selected_event = {}
