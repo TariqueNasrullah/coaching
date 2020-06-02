@@ -155,7 +155,7 @@ def teachers(request):
 		temp_dict = {}
 		temp_dict['name'] = t.name
 		temp_dict['subject'] = t.subject
-		temp_dict['photo'] = str(t.teacher_photo)
+		temp_dict['photo'] = str(t.teacher_photo.url)
 		temp_dict['facebook'] = t.facebook_profile
 		temp_dict['twitter'] = t.twitter_profile
 		temp_dict['instagram'] = t.instagram_profile
