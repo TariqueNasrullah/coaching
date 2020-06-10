@@ -3,12 +3,12 @@ from eventManager.models import event as event_model
 from teachers.models import teacher
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from noticeboard.models import notice
-from .models import blog
+from .models import blog, contact_information
 from study_materials.models import free_materials
 from django.db.models import Q
 
 def home(request):
-	p = event_model.objects.filter()[:3]
+	p = event_model.objects.filter().order_by('-id')[:3]
 	selected_event = []
 
 	for this_event in p:
@@ -83,18 +83,17 @@ def course_view_english(request):
 	return render(request, 'home/courses_english.html', {'selected_materials' : selected_materials})
 
 def events(request):
-	p = event_model.objects.filter()[0]
+	p = event_model.objects.filter().order_by('-id')[0]
 	selected_event = {}
 	selected_event['pk'] = p.id
 	selected_event['title'] = p.title
 	selected_event['date'] = p.date
 	selected_event['location'] = p.location
-	selected_event['title_image'] = str(p.title_image)
+	selected_event['title_image'] = p.title_image.url
 	selected_event['short_description'] = p.short_description
 	selected_event['youtube_vide_link'] = p.youtube_vide_link
 
-	q = event_model.objects.filter()[1:]
-
+	q = event_model.objects.filter().order_by('-id')[1:]
 	all_event = []
 
 	for event in q:
@@ -103,7 +102,7 @@ def events(request):
 		temp_dict['title'] = event.title
 		temp_dict['date'] = event.date
 		temp_dict['location'] = event.location
-		temp_dict['title_image'] = str(event.title_image)
+		temp_dict['title_image'] = event.title_image.url
 		temp_dict['short_description'] = event.short_description
 		temp_dict['youtube_vide_link'] = event.youtube_vide_link
 		all_event.append(temp_dict)
@@ -121,11 +120,11 @@ def events_param(request, pk=None):
 	selected_event['title'] = p.title
 	selected_event['date'] = p.date
 	selected_event['location'] = p.location
-	selected_event['title_image'] = str(p.title_image)
+	selected_event['title_image'] = p.title_image.url
 	selected_event['short_description'] = p.short_description
 	selected_event['youtube_vide_link'] = p.youtube_vide_link
 	
-	q = event_model.objects.filter().exclude(id=pk)
+	q = event_model.objects.filter().order_by('-id').exclude(id=pk)
 
 	all_event = []
 
@@ -135,7 +134,7 @@ def events_param(request, pk=None):
 		temp_dict['title'] = event.title
 		temp_dict['date'] = event.date
 		temp_dict['location'] = event.location
-		temp_dict['title_image'] = str(event.title_image)
+		temp_dict['title_image'] = event.title_image.url
 		temp_dict['short_description'] = event.short_description
 		temp_dict['youtube_vide_link'] = event.youtube_vide_link
 		all_event.append(temp_dict)
@@ -168,6 +167,23 @@ def teachers(request):
 	return render(request, 'home/teachers.html', context)
 
 def contact(request):
+	if request.method == 'POST':
+		try:
+			name = request.POST['name']
+			email = request.POST['email']
+			subject = request.POST['subject']
+			message = request.POST['name']
+			
+			cinfo = contact_information(name=name, email=email, subject=subject, message=message)
+			cinfo.save()
+
+			context = {}
+			context['success'] = True
+			return render(request, 'home/contact.html', context)
+		except:
+			context = {}
+			context['success'] = False
+			return render(request, 'home/contact.html', context)
 	return render(request, 'home/contact.html')
 
 def test(request, pk=None):

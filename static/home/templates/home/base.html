@@ -117,11 +117,14 @@
               <div class="probootstrap-footer-widget">
                 <h3>Links</h3>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Courses</a></li>
-                  <li><a href="#">Teachers</a></li>
-                  <li><a href="#">News</a></li>
-                  <li><a href="#">Contact</a></li>
+                  <li><a href="{% url 'home' %}">Home</a></li>
+                  <li><a href="{% url 'course_view_science' %}">Courses</a></li>
+                  <li><a href="{% url 'teachers' %}">Teachers</a></li>
+                  <li><a href="{% url 'events' %}">Events</a></li>
+                  <li><a href="{% url 'notice' %}">Notice</a></li>
+                  <li><a href="{% url 'photologue:pl-gallery-archive' %}">Gallery</a></li>
+                  <li><a href="{% url 'bloglist' %}">Blog</a></li>
+                  <li><a href="{% url 'contact' %}">Contact</a></li>
                 </ul>
               </div>
             </div>

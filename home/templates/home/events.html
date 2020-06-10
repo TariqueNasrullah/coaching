@@ -24,10 +24,12 @@
                 <span class="probootstrap-date"><i class="icon-calendar"></i>{{ selected_event.date }}</span>
                 <span class="probootstrap-location"><i class="icon-location2"></i>{{ selected_event.location }}</span>
               </p>
-              <p><a href="#" class="btn btn-primary">Learn More</a></p>
+              <!-- <p><a href="#" class="btn btn-primary">Learn More</a></p> -->
             </div>
             <div class="probootstrap-image probootstrap-animate" style="background-image: url({% static '' %}{{selected_event.title_image}})">
-              <a href="https://www.youtube.com/watch?v=f2pLhomzFXc" class="btn-video popup-vimeo"><i class="icon-play3"></i></a>
+              {% if selected_event.youtube_vide_link %}
+              <a href="{{selected_event.youtube_vide_link}}" class="btn-video popup-vimeo"><i class="icon-play3"></i></a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -45,7 +47,7 @@
         {% for event in all_event %}
           <div class="col-md-4 col-sm-6 col-xs-6 col-xxs-12 probootstrap-animate">
             <a href="{% url 'events_param' pk=event.pk %}" class="probootstrap-featured-news-box">
-              <figure class="probootstrap-media"><img src="{% static '' %}{{event.title_image}}" alt="Free Bootstrap Template by uicookies.com" class="img-responsive" style="height: 225px; width: 100%"></figure>
+              <figure class="probootstrap-media"><img src="{{event.title_image}}" alt="Free Bootstrap Template by uicookies.com" class="img-responsive" style="height: 225px; width: 100%"></figure>
               <div class="probootstrap-text">
                 <h3 style="height: 10px; overflow: hidden; padding-bottom: 10rem;">{{event.title}}</h3>
                 <span class="probootstrap-date"><i class="icon-calendar"></i>{{event.date}}</span>
