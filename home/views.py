@@ -23,6 +23,23 @@ def home(request):
 		
 	context = {}
 	context['selected_event'] = selected_event
+
+	p = teacher.objects.filter()[:4]
+
+	teacher_list = []
+
+	for t in p:
+		temp_dict = {}
+		temp_dict['name'] = t.name
+		temp_dict['subject'] = t.subject
+		temp_dict['photo'] = str(t.teacher_photo.url)
+		temp_dict['facebook'] = t.facebook_profile
+		temp_dict['twitter'] = t.twitter_profile
+		temp_dict['instagram'] = t.instagram_profile
+		temp_dict['googleplus'] = t.googlePlus_profile
+		teacher_list.append(temp_dict)
+
+	context['teacher_list'] = teacher_list
 	return render(request, 'home/index.html', context)
 
 
