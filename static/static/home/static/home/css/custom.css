@@ -1,0 +1,11 @@
+.indi-notice{padding:20px;border:1px solid #e6e5e5;-webkit-transition:.3s all;transition:.3s all;position:relative;top:0;margin-bottom:20px}
+.indi-notice .media{margin-bottom:20px}
+.indi-notice .media img{border-radius:50%;width:90px;margin:0 auto}
+.indi-notice .text h3{font-size:20px;margin:0}
+.indi-notice .text p{margin-bottom:10px}
+.indi-notice .probootstrap-footer-social li a{font-size:15px}
+.indi-notice .probootstrap-footer-social li.twitter a{color:#1da1f2}
+.indi-notice .probootstrap-footer-social li.facebook a{color:#3b5998}
+.indi-notice .probootstrap-footer-social li.instagram a{color:#e1306c}
+.indi-notice .probootstrap-footer-social li.google-plus a{color:#dd4b39}
+.indi-notice:focus,.indi-notice:hover{top:-10px;border:1px solid transparent;-webkit-box-shadow:0 2px 20px 0 rgba(0,0,0,.1);box-shadow:0 2px 20px 0 rgba(0,0,0,.1)}
