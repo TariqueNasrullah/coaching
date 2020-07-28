@@ -1,0 +1,61 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+  {% load staticfiles %}
+
+    <div style="text-align: center; padding-top: 2rem;">
+      <h3 style="margin-bottom: 0px; display: inline-block; padding: 15px 32px; border-radius: 10px; font-family: 'Ubuntu', sans-serif; color: #9b9b9b; font-weight: 800; letter-spacing: 3px; ">Notice Board</h3>
+    </div>
+    <hr>
+    
+    <section>
+      <div class="container">
+        <div class="row">
+          {% for notice in selected_notice %}
+            <div class="col-md-12 col-sm-12">
+            <div class="probootstrap-teacher text-center probootstrap-animate">
+              <table style="table-layout:fixed; width: 100%;">
+                <tr>
+                  <td style="width: 70%; overflow: hidden; overflow: hidden; white-space: nowrap;">
+                    <h4 style="margin-bottom: 0px; text-align: left; font-size: 16px; font-family: 'Ubuntu', sans-serif; color: #727171; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"> {{ notice.notice_title }} </h4>
+                  </td>
+                  <td style="width: 30%;">
+                    <a href="{{notice.notice_pdf_file.url}}">
+                        <h5 style="margin-bottom: 0px; color: #41994e; font-family: 'Ubuntu', sans-serif; font-weight: 700; font-size: 14px;">View</h5>
+                    </a>
+                   
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% if selected_notice.has_other_pages %}
+      <div style="text-align: center;">
+        <ul class="pagination">
+          {% if selected_notice.has_previous %}
+            <li><a href="?page={{ selected_notice.previous_page_number }}">&laquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+          {% endif %}
+
+          {% for i in selected_notice.paginator.page_range %}
+            {% if selected_notice.number == i %}
+              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+              <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+          {% endfor %}
+
+          {% if selected_notice.has_next %}
+            <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+          {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endif %}
+{% endblock %}
