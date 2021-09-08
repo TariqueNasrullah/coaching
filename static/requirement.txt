@@ -3,6 +3,6 @@ django-photologue==3.9
 django-sortedm2m==1.5.0
 django-tinymce==2.8.0
 ExifRead==2.1.2
-Pillow==6.0.0
+Pillow==8.3.2
 pytz==2019.1
 sqlparse==0.3.0
